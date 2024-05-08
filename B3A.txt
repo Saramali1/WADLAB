@@ -1,0 +1,5 @@
+hdfs dfs -mkdir /fire
+
+hdfs dfs -put /home/vboxuser/Downloads/forest+fires/forestfires.csv /fire/
+
+python3 forest_fire_analysis.py -r hadoop hdfs:///fire/forestfires.csv --output-dir hdfs:///output/

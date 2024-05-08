@@ -1,0 +1,13 @@
+python3 prog.py
+hdfs dfs -mkdir /sara
+hdfs dfs -put /home/vboxuser/Pictures/logfile.txt /sara/
+javac -classpath $(hadoop classpath) -d . LogAnalyzer.java LogMapper.java LogReducer.java
+jar -cvf LogAnalyzer.jar .
+hadoop jar LogAnalyzer.jar LogAnalyzer
+
+hdfs dfs -ls /sara/
+
+hadoop jar /home/vboxuser/Pictures/LogAnalyzer.jar LogAnalyzer /sara/logfile.txt /output
+hdfs dfs -ls /output/
+hdfs dfs -cat /output/part-r-00000
+
